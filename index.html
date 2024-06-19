@@ -82,7 +82,7 @@ const serverURL = 'https://handsomely-careful-grape.glitch.me';
       counterElement.innerText = count;
     });
  function updateCounter() {
-      fetch(${serverURL}/api/counter')
+      fetch('${serverURL}/api/counter')
         .then(response => response.json())
         .then(data => {
           counterElement.innerText = data.count;
