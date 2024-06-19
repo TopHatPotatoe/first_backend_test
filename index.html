@@ -41,7 +41,17 @@
       const count = snapshot.val();
       counterElement.innerText = count;
     });
+ function updateCounter() {
+      fetch('http://localhost:5000/api/counter')
+        .then(response => response.json())
+        .then(data => {
+          counterElement.innerText = data.count;
+        });
+    }
 
+    // Initial update and start polling every 5 seconds
+    updateCounter();
+    setInterval(updateCounter, 1000); // Adj
     // Increment counter value in Firebase
     incrementButton.addEventListener('click', () => {
       fetch('http://localhost:5000/api/counter/increment', { method: 'POST' })
