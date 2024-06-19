@@ -12,8 +12,46 @@
     <p id="counter">0</p>
     <button id="incrementButton">Increment</button>
   </div>
-  <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-database.js"></script>
+<script type="module">
+    // Firebase configuration
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
+    import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js";
+
+    const firebaseConfig = {
+      apiKey: "YOUR_API_KEY",
+      authDomain: "YOUR_AUTH_DOMAIN",
+      databaseURL: "https://mindful-genius-418817.firebaseio.com",
+      projectId: "YOUR_PROJECT_ID",
+      storageBucket: "YOUR_STORAGE_BUCKET",
+      messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+      appId: "YOUR_APP_ID"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
+
+    const counterElement = document.getElementById('counter');
+    const incrementButton = document.getElementById('incrementButton');
+
+    // Get counter value from Firebase and update the UI
+    const counterRef = ref(db, 'counter');
+    onValue(counterRef, (snapshot) => {
+      const count = snapshot.val();
+      counterElement.innerText = count;
+    });
+
+    // Increment counter value in Firebase
+    incrementButton.addEventListener('click', () => {
+      fetch('http://localhost:5000/api/counter/increment', { method: 'POST' })
+        .then(response => response.json())
+        .then(data => {
+          counterElement.innerText = data.count;
+        });
+    });
+  </script>
+</body>
+</html>
   <script src="app.js"></script>
 </body>
 </html>
