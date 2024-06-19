@@ -67,7 +67,7 @@
       messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
       appId: "YOUR_APP_ID"
     };
-const serverURL = 'https://handsomely-careful-grape.glitch.me';
+
     // Initialize Firebase
     const app = initializeApp(firebaseConfig);
     const db = getDatabase(app);
@@ -82,7 +82,7 @@ const serverURL = 'https://handsomely-careful-grape.glitch.me';
       counterElement.innerText = count;
     });
  function updateCounter() {
-      fetch('${serverURL}/api/counter')
+      fetch('http://localhost:5000/api/counter')
         .then(response => response.json())
         .then(data => {
           counterElement.innerText = data.count;
@@ -94,7 +94,7 @@ const serverURL = 'https://handsomely-careful-grape.glitch.me';
     setInterval(updateCounter, 1000); // Adj
     // Increment counter value in Firebase
     incrementButton.addEventListener('click', () => {
-      fetch('${serverURL}/api/counter/increment', { method: 'POST' })
+      fetch('http://localhost:5000/api/counter/increment', { method: 'POST' })
         .then(response => response.json())
         .then(data => {
           counterElement.innerText = data.count;
