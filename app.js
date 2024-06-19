@@ -1,4 +1,6 @@
-// Your web app's Firebase configuration
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
+import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js";
+
 const firebaseConfig = {
     apiKey: "AIzaSyDFr2iDLzlv-7QqYf4GtkWIxU73460qOgo",
     authDomain: "mindful-genius-418817.firebaseapp.com",
