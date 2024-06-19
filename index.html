@@ -12,7 +12,8 @@
     <p id="counter">0</p>
     <button id="incrementButton">Increment</button>
   </div>
-<script type="module">
+  <!-- Include Firebase SDK -->
+  <script type="module">
     // Firebase configuration
     import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
     import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js";
@@ -46,12 +47,9 @@
       fetch('http://localhost:5000/api/counter/increment', { method: 'POST' })
         .then(response => response.json())
         .then(data => {
-          counterElement.innerText = data.count;
+          // The counter value will be updated in real-time by the onValue listener
         });
     });
   </script>
-</body>
-</html>
-  <script src="app.js"></script>
 </body>
 </html>
